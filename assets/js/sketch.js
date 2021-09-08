@@ -9,14 +9,9 @@ let c11;
 let c12;
 let c13;
 let c14;
-let P1;
-let P2;
 function preload() {
-    P1 = game_w*100/3;
-    P2 = game_w - P1;
-    m1 = new Mountain(loadImage('assets/img/M1.png'));
-    m2 = new Mountain(loadImage('assets/img/M2.png'));
-    // m2 = loadImage('assets/img/M2.png');
+    m1 = new Mountain(loadImage('assets/img/M1.png'),0,80);
+    m2 = new Mountain(loadImage('assets/img/M2.png'),0,0);
     c01 = new Cloud(loadImage('assets/img/c01.png'),300);
     c02 = new Cloud(loadImage('assets/img/c02.png'),275);
     c03 = new Cloud(loadImage('assets/img/c03.png'),250);
@@ -31,7 +26,6 @@ function setup() {
     createCanvas(game_w,game_h);
     m1.mt.resize(game_w,0);
     m2.mt.resize(game_w,0);
-    // m2.resize(game_w,0);
     c01.cloud.resize(game_w,0);
     c02.cloud.resize(game_w,0);
     c03.cloud.resize(game_w,0);
@@ -45,14 +39,12 @@ function setup() {
 
 function draw() {
     background(0,0,0);
-    // image(m2,0,0);
     m2.draw();
     c13.draw();
     c14.draw();
     c12.draw();
     c11.draw();
 
-    // image(m1,0,0);
     m1.draw();
     c05.draw();
     c04.draw();
@@ -72,13 +64,13 @@ function draw() {
     c13.update();
     c14.update();
 }
-
-function keyPressed() {
-    if (keyCode === LEFT_ARROW) {
-        console.log("left")
+function mouseMoved()  {
+    if (mouseX > game_w/2) {
         m1.moveLeft();
-    } else if (keyCode === RIGHT_ARROW) {
-        console.log("right");
+        m2.moveLeft();
+    }
+    else {
         m1.moveRight();
+        m2.moveRight();
     }
 }
