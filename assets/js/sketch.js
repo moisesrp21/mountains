@@ -1,47 +1,49 @@
-let m1;
-let m2;
-let c01;
-let c02;
-let c03;
-let c04;
-let c05;
-let c11;
-let c12;
-let c13;
-let c14;
-function preload() {
-    m1 = new Mountain(loadImage('assets/img/M1.png'),0,80);
-    m2 = new Mountain(loadImage('assets/img/M2.png'),0,0);
-    c01 = new Cloud(loadImage('assets/img/c01.png'),300);
-    c02 = new Cloud(loadImage('assets/img/c02.png'),275);
-    c03 = new Cloud(loadImage('assets/img/c03.png'),250);
-    c04 = new Cloud(loadImage('assets/img/c04.png'),225);
-    c05 = new Cloud(loadImage('assets/img/c05.png'),200);
-    c11 = new Cloud(loadImage('assets/img/c11.png'),175);
-    c12 = new Cloud(loadImage('assets/img/c12.png'),150);
-    c13 = new Cloud(loadImage('assets/img/c13.png'),125);
-    c14 = new Cloud(loadImage('assets/img/c14.png'),150);
-}
 function setup() {
     createCanvas(game_w,game_h);
-    m1.mt.resize(game_w,0);
-    m2.mt.resize(game_w,0);
-    c01.cloud.resize(game_w,0);
-    c02.cloud.resize(game_w,0);
-    c03.cloud.resize(game_w,0);
-    c04.cloud.resize(game_w,0);
-    c05.cloud.resize(game_w,0);
-    c11.cloud.resize(game_w,0);
-    c12.cloud.resize(game_w,0);
-    c13.cloud.resize(game_w,0);
-    c14.cloud.resize(game_w,0);
+    if (game_h > game_w)
+    {
+        m1.mt.resize(game_w,0);
+        m2.mt.resize(game_w,0);
+        c01.cloud.resize(game_w,0);
+        c02.cloud.resize(game_w,0);
+        c03.cloud.resize(game_w,0);
+        c04.cloud.resize(game_w,0);
+        c05.cloud.resize(game_w,0);
+        c11.cloud.resize(game_w,0);
+        c12.cloud.resize(game_w,0);
+        c13.cloud.resize(game_w,0);
+        c14.cloud.resize(game_w,0);
+        c15.cloud.resize(game_w,0);
+    }
+    else {
+        m1.mt.resize(0,game_h);
+        m2.mt.resize(0,game_h);
+        c01.cloud.resize(0,game_h);
+        c02.cloud.resize(0,game_h);
+        c03.cloud.resize(0,game_h);
+        c04.cloud.resize(0,game_h);
+        c05.cloud.resize(0,game_h);
+        c11.cloud.resize(0,game_h);
+        c12.cloud.resize(0,game_h);
+        c13.cloud.resize(0,game_h);
+        c14.cloud.resize(0,game_h);
+        c15.cloud.resize(0,game_h);
+        
+    }
+    bkYellow = new BkYellow(0,0);
 }
 
 function draw() {
-    background(0,0,0);
+    background(48,44,47);
+    noStroke();
+    fill(color(102,135,173,76));
+    rect(0,game_h/3,game_w,game_h/4);
+    fill(color(218,133,83,76));
+    rect(0,game_h*2/3,game_w,game_h/4);
     m2.draw();
-    c13.draw();
+    c15.draw();
     c14.draw();
+    c13.draw();
     c12.draw();
     c11.draw();
 
@@ -51,6 +53,7 @@ function draw() {
     c03.draw();
     c02.draw();
     c01.draw();
+    bkYellow.draw();
 
     m1.update();
     m2.update();
@@ -63,6 +66,7 @@ function draw() {
     c12.update();
     c13.update();
     c14.update();
+    bkYellow.update();
 }
 function mouseMoved()  {
     if (mouseX > game_w/2) {
